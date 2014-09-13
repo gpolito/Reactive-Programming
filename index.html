@@ -247,8 +247,80 @@
 				<section data-background="#C55300">
 					<h2>Scalable</h2>
 					<blockquote style="color: white;">
-						&ldquo;A scalable system is easily upgraded on demand in order to ensure responsiveness under various load conditions.&rdquo;
+						&ldquo;capable of being easily expanded or upgraded on demand.&rdquo;
 					</blockquote>
+					<p style="color: white;">Merriam Webster</p>
+				</section>
+
+				<section>
+					<h2>Scalability</h2>
+					<h3>Qué significa?</h3>
+					<ul>
+						<li class="fragment">capacidad de expandirse/contraerse de acuerdo a su uso</li>
+						<li class="fragment">es necesario hacer <em>elásticas</em> las aplicaciones bajo demanda, permitiendo:</li>
+						<p class="fragment">- agregar o quitar nodos- <strong>scale out/in</strong></p>
+						<p class="fragment">- obtener o liberar CPUs en cada nodo - <strong>scale up/down</strong></p>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Scalability</h2>
+					<h3>Por qué es necesario?</h3>
+					<ul>
+						<li class="fragment">por ejemplo: en el dominio eCommerce:</li>
+						<p class="fragment">- los picos de tráfico mas altos se dan cuando cuando estás vendiendo bien</p>
+						<p class="fragment">- durante un pico de tráfico la gente basicamente <em>quiere darte su dinero</em> :) </p>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Scalability</h2>
+					<h3>Cómo lo logramos?</h3>
+					<ul>
+						<li class="fragment">primero se debe elegir el paradigma a utilizar...</li>
+						<li class="fragment">... y luego el/los lenguaje/s y las herramientas sobre las que se va a construir</li>
+						<li class="fragment">usualmente se hace lo contrario, y una vez que las decisiones técnicas están tomadas es muy dificil de revertir el cambio de paradigma</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Scalability</h2>
+					<h3>Modelos de Concurrencia</h3>
+					<ul>
+						<li class="fragment">Threads-based Concurrency and Shared Memory</li>
+						<li class="fragment">Message-driven Concurrency</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Scalability</h2>
+					<h3>Modelos de Concurrencia</h3>
+					<h3>Threads-based Concurrency and Shared Memory</h3>
+					<ul>
+						<li class="fragment">frameworks MVC populares como Ruby on Rails son thread-based.</li>
+						<li class="fragment">comparten estado/datos mutables</li>
+						<li class="fragment">un thread por request</li>
+						<li class="fragment">acceso concurrente a datos mutables (variables y objetos) mutuo excluidos con locks y otros complicados mecanismos de sincronización</li>
+						<li class="fragment">thread safety: dificil de testear y asegurar</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Ley de Amdahl</h3>
+					<img src="assets/amdahl.png">
+				</section>
+
+				<section>
+					<h2>Scalability</h2>
+					<h3>Modelos de Concurrencia</h3>
+					<h3>Message-driven Concurrency</h3>
+					<ul>
+						<li class="fragment">sistemas orientados a eventos basados en pasaje de mensajes asincrónicos permiten:</li>
+						<p class="fragment">- bajo acoplamiento e indepenencia de localización <strong>(location transparency)</strong> entre componentes</p>
+						<p class="fragment">- <strong>scale out</strong> del sistema hacia otros nodos, agregando instancias para incrementar el procesamiento de los eventos</p>
+						<p class="fragment">- <strong>scale up</strong> del sistema hacia otros cores, agregando instancias para incrementar el procesamiento de los eventos</p>
+						<p class="fragment">- <strong>scale up & scale out</strong>: no tienen diferencias a nivel de código! la topología del sistema se configura aparte</p>
+					</ul>
 				</section>
 
 				<!-- Event Driven -->
