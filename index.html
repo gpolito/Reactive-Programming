@@ -102,7 +102,7 @@
 					<ul>
 						<li class="fragment"><em>Internet: 1000 milliones de usuarios</em></li>
 						<li class="fragment"><em>Nacía YouTube (febrero 2005)</em></li>
-						<li class="fragment"><em>Twitter existía (2006)</em></li>
+						<li class="fragment"><em>Twitter no existía (2006)</em></li>
 					</ul>
 				</section>
 
@@ -155,7 +155,7 @@
 					<h2>Responsive</h2>
 					<ul>
 						<li class="fragment">no confundir con Web Responsive Design</li>
-						<li class="fragment">depende los reactive traits: <em>Resilience</em> and <em>Scalabilty</em></li>
+						<li class="fragment">depende  y es una consecuencia de los reactive traits: <em>Resilience</em> and <em>Scalabilty</em></li>
 					</ul>	
 				</section>
 
@@ -224,7 +224,7 @@
 						<li class="fragment">supervisar estos procesos:</li>
 						<p class="fragment"> -  cada proceso tiene un proceso supervisor padre</p>
 						<p class="fragment"> -  cada error es capturado y enviado como evento (async) al supervisor</p>
-						<p class="fragment"> -  el supervisor maneja las fallas - puediendo matar, reiniciar, suspender/reaundar el proceso</p>
+						<p class="fragment"> -  el supervisor maneja las fallas - pudiendo matar, reiniciar, suspender/reaundar el proceso</p>
 						<li class="fragment">la semántica deber ser la misma para procesos locales o remotos</li>
 						<li class="fragment">de esta manera, se desacopla el manejo de errores de la lógica de negocio</li>
 					</ol>
@@ -232,7 +232,8 @@
 				</section>
 
 				<section>
-					<h2>Message-driven Resiliency</h2>
+					<h2>Event-driven Resiliency</h2>
+					<p>Una arquitectura basada en eventos nos brinda la base necesaria para implementar este modelo de manejo de fallas:</p>
 					<ul>
 						<li class="fragment"><strong>Isolation:</strong></li>
 						<p class="fragment">- necesario para que un sistema se pueda auto-recuperar</p>
@@ -317,7 +318,7 @@
 					<h3>Message-driven Concurrency</h3>
 					<ul>
 						<li class="fragment">sistemas orientados a eventos basados en pasaje de mensajes asincrónicos permiten:</li>
-						<p class="fragment">- bajo acoplamiento e indepenencia de localización <strong>(location transparency)</strong> entre componentes</p>
+						<p class="fragment">- bajo acoplamiento e independencia de localización <strong>(location transparency)</strong> entre componentes</p>
 						<p class="fragment">- <strong>scale out</strong> del sistema hacia otros nodos, agregando instancias para incrementar el procesamiento de los eventos</p>
 						<p class="fragment">- <strong>scale up</strong> del sistema hacia otros cores, agregando instancias para incrementar el procesamiento de los eventos</p>
 						<p class="fragment">- <strong>scale up & scale out</strong>: no tienen diferencias a nivel de código! la topología del sistema se configura aparte</p>
@@ -325,12 +326,34 @@
 				</section>
 
 				<!-- Event Driven -->
-				<section>
+				<section data-background="#C55300">
 					<h2>Event Driven</h2>
-					<blockquote>
+					<blockquote style="color: white;">
 						&ldquo;The flow of the program is determined by events.&rdquo;
 					</blockquote>
 					<p style="color: white;">Wikipedia</p>
+				</section>
+
+				<section>
+					<h2>Event Driven</h2>
+					<h3>Por qué es importante?</h3>
+					<p class="fragment">la comunicación asincrónica basada en pasaje de mensajes otorga:</p>
+					<ul>
+						<li class="fragment"><strong>bajo acoplamiento entre componentes</strong></li>
+						<li class="fragment"><strong>mantenibilidad y flexibilidad para evolucionar</strong> - interfaces enfocadas en el contenido de la comunicación</li>
+						<li class="fragment"><strong>lower latency & higher throughput</strong> - componentes receptores de eventos permanecen 'idle' mientras no reciban eventos, permitiendo a los demas receptores utilizar el mismo thread</li>
+						<li class="fragment"><strong>scale up & out</strong> - dinamicamente agregar/quitar componentes receptores de eventos en la misma maquina o en nuevos nodos</li>
+					</ul>
+				</section>
+
+				<section data-background="#C55300">
+					<h1>Conclusión</h1>
+					<ul>
+						<li class="fragment" style="color: white;">vimos a grandes rasgos lo que implica desarrollar aplicaciones con los requerimientos del "hoy"</li>
+						<li class="fragment" style="color: white;">vimos que la Programación Reactiva no es solo una tecnología más, sino que es ÉL paradigma para desarrollar dichas aplicaciones</li>
+						<li class="fragment" style="color: white;">independientemente del languaje o framework a utilizar, la escalibilidad y la resilencia deben ser prioritarios con el fin de alzanzar la "responsiveness" que esperan los usuarios</li>
+						<li class="fragment" style="color: white;">arquitecturas basadas en eventos no bloqueantes y asincrónicos proveen la base para alcanzar la escabilidad y resiliencia necesaria</li>
+					</ul>
 				</section>
 
 				<section>
