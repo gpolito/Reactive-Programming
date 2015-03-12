@@ -38,30 +38,34 @@
 
 	<body>
 		<aside style="display: block; position: fixed; bottom: 20px; left: 20px; z-index: 30;">
-		    <a href="http://typesafe.com"><img src="assets/pyxis_color_96x35.png"></a>
+		    <a href="http://www.pyxis.com.uy"><img src="assets/pyxis_color_96x35.png"></a>
 		</aside>
+		<aside style="display: block; position: fixed; bottom: 20px; left: 125px; z-index: 30;">
+		    <a href="http://www.aquait.com.uy/"><img width="73px" style="margin-bottom: 6px;" src="assets/nuevo-logo-aquait-medium.png"></a>
+		</aside>
+		
 
 		<div class="reveal">
 
 			<div class="slides">
 				<section>
 					<h1>Reactive Programming</h1>
-					<h3>Introducción</h3>
+					<h3>Overview</h3>
 					<br/>
 					<h4>Guillermo Polito</h4>
-					<p><small><a href="http://twitter.com/gpolito">@gpolito</a> / <a href="http://github.com/gpolito/Reactive-Programming">slides en github</a></small>
+					<p><small><a href="http://twitter.com/gpolito">@gpolito</a> / <a href="http://github.com/gpolito/Reactive-Programming">slides at github</a></small>
 					</p>
 				</section>
 
 				<section>
-					<h2>Motivación</h2>
-					<h3 class="fragment">Los requerimientos cambiaron...</h3>
+					<h2>Why Reactive?</h2>
+					<h3 class="fragment"> Some things have changed...</h3>
 					<table class="fragment">
 						<thead>
 							<tr>
 								<th></th>
-								<th>2004</th>
-								<th>2014</th>
+								<th>Almost yesterday</th>
+								<th>Today</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -69,6 +73,21 @@
 								<td>Server nodes</td>
 								<td>10's</td>
 								<td>1000's</td>
+							</tr>
+							<tr class="fragment">
+								<td>RAM</td>
+								<td>expensive</td>
+								<td>cheap</td>
+							</tr>
+							<tr class="fragment">
+								<td>Network</td>
+								<td>slow</td>
+								<td>fast</td>
+							</tr>
+							<tr class="fragment">
+								<td>Data volume</td>
+								<td>GBs</td>
+								<td>TBs -> PBs</td>
 							</tr>
 							<tr class="fragment">
 								<td>Response times</td>
@@ -80,71 +99,66 @@
 								<td>hours</td>
 								<td>none</td>
 							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section>
+					<h2>Why Reactive?</h2>
+					<a class="fragment" href="http://internetlivestats.com/">internetlivestats.com</a>
+				</section>
+
+				<section>
+					<h2>Why Reactive?</h2>
+					<h3 class="fragment">Quick summary. In 10 years:</h3>
+					<table class="fragment">
+						<thead>
+							<tr>
+								<th></th>
+								<th>2005</th>
+								<th>2015</th>
+							</tr>
+						</thead>
+						<tbody>
 							<tr class="fragment">
-								<td>Data volume</td>
-								<td>GBs</td>
-								<td>TBs -> PBs</td>
+								<td>Internet users</td>
+								<td><span style="color: orange;">1000 millions</span></td>
+								<td>3000 millions</td>
+							</tr>
+							<tr class="fragment">
+								<td>YouTube</td>
+								<td>was born on February, 2005</td>
+								<td><span style="color: orange;">more than 1000 million users</span></td>
+							</tr>
+							<tr class="fragment">
+								<td>Facebook</td>
+								<td>5.5 million active users</td>
+								<td><span style="color: orange;">1.380 million active users</span></td>
+							</tr>
+							<tr class="fragment">
+								<td>Twitter</td>
+								<td>wasn't born yet</td>
+								<td>288 million active users</td>
 							</tr>
 						</tbody>
 					</table>
 				</section>
 
 				<section>
-					<h2>Motivación</h2>
-					<h3 class="fragment"></h3>
-					<a href="http://www.internetlivestats.com/">www.internetlivestats.com</a>
+					<h3>Why Reactive?</h3>
+					<p>Today's demands are simply not met by yesterday’s software architectures</p>
+					<p class="fragment">A new coherent approach to Systems Architecture is needed...</p>
 				</section>
 
-				<section>
-					<h2>Motivación</h2>
-					<h3 class="fragment">Más números</h3>
-					<h3 class="fragment">... en 2005 ...</h3>
-					<ul>
-						<li class="fragment"><em>Internet: 1000 milliones de usuarios</em></li>
-						<li class="fragment"><em>Nacía YouTube (febrero 2005)</em></li>
-						<li class="fragment"><em>Twitter no existía (2006)</em></li>
-					</ul>
+				<section data-background="#59CDEA">
+					<h2 style="color: white;">Reactive Applications Traits</h2>
+					<img style="border: none; box-shadow: none;" src="assets/reactive-traits.png" />
+					<strong><a class="fragment" style="color: white;" href="http://reactivemanifesto.org/">reactivemanifesto.org</a></strong>
 				</section>
 
-				<section>
-					<h2>Motivación</h2>
-					<h3 class="fragment">Más números</h3>
-					<h3 class="fragment">... en 2014 ...</h3>
-					<ul>
-						<li class="fragment"><em>Internet: 2950 millones de usuarios (10/09/2014)</em></li>
-						<li class="fragment"><em>Facebook: 1300 milliones de usuarios</em></li>
-						<li class="fragment"><em>Twitter: 270 milliones de usuarios</em></li>
-					</ul>
-				</section>
+				<!-- Responsive -->
 
-				<section>
-					<h3>Motivación</h3>
-					<em>
-						Un solo sitio es capaz de manejar la misma cantidad de tráfico que existía en toda Internet hace menos de una década.</em>
-					<img src="assets/graphic-1.png" />
-				</section>
-
-				<section>
-					<h3>... nuevas arquitecturas son necesarias ...</h3>
-					<ul>
-						<li class="fragment"><em>ya que estamos teniendo problemas para escalar...</em></li>
-						<li class="fragment"><em>el software es muy importante en estos días...</em></li>
-						<li class="fragment"><strong>los paradigmas definidos en el pasado no escalan en el presente y tampoco en el futuro </strong></li>
-					</ul>
-				</section>
-
-				<section>
-					<h3>Reactive Applications Traits</h3>
-					<img src="assets/reactive-traits.jpg" />
-				</section>
-
-				<section>
-					<h3>pequeña muestra de compañias "reactivas"</h3>
-					<img src="assets/companies.png" alt="reactive companies" />
-				</section>
-
-				<!-- responsive -->
-				<section data-background="#C55300">
+				<section data-background="#C55300" data-background-transition="zoom">
 					<h2>Responsive</h2>
 					<blockquote style="color: white;">
 						&ldquo;A responsive system is quick to react to all users — under blue skies and grey skies — in order to ensure a consistently positive user experience.&rdquo;
@@ -153,14 +167,15 @@
 
 				<section>
 					<h2>Responsive</h2>
-					<ul>
-						<li class="fragment">no confundir con Web Responsive Design</li>
-						<li class="fragment">depende  y es una consecuencia de los reactive traits: <em>Resilience</em> and <em>Scalabilty</em></li>
-					</ul>	
+						<p class="fragment" style="color: crimson;">isn't the same than Web Responsive Design!</p>
+						<p class="fragment" >Problems have to be detected quickly and dealt with effectively, to provide rapid and consistent response times.</p>
+						<p class="fragment">it depends on, and is a consecuence of the traits: <p/>
+						<p class="fragment"><em style="color: orange;">Resilient</em> and <em style="color: orange;">Elastic</em></p>
 				</section>
 
-				<!-- resilience -->
-				<section data-background="#C55300">
+				<!-- Resilience -->
+
+				<section data-background="#C55300" data-background-transition="zoom">
 					<h2>Resilient</h2>
 					<blockquote style="color: white;">
 						&ldquo;The ability of a sustance or object to spring back into shape.&rdquo;<br/>
@@ -171,31 +186,36 @@
 
 				<section>
 					<h2>Resilient</h2>
-					<p class="fragment">el objetivo es que los sistemas sean capaces de auto-recuperarse de diferentes errores:</p>
+					<p class="fragment">The system stays responsive in the face of failure.</p>
+					<p class="fragment" style="color: orange;">Failure != error (e.g. validation error)</p>
+					<p class="fragment"><br>Examples of failures:</p>
 					<ul>
-						<li class="fragment">errores internos al sistema</li>
-						<li class="fragment">errores en hardware</li>
-						<li class="fragment">errores en la red</li>
-						<li class="fragment">errores con servicios externos (las aplicaciones de hoy en día dependen de 10, 20 o más!)</li>
+						<li class="fragment">program defects causing corrupted internal state</li>
+						<li class="fragment">hardware malfunction</li>
+						<li class="fragment">network failures</li>
+						<li class="fragment">troubles with external services</li>
 					</ul>
 				</section>
 
 				<section>
+					<h3>Resilient - how? </h3>
+					<h2 style="color: orange;">Failure Recovery in OOP </h2>
+					<ul>
+						<li class="fragment">single thread of control</li>
+						<li class="fragment">if the thread blows up => you are screwed</li>
+						<li class="fragment">no global organization of error handling </li> 
+						<li class="fragment">defensive programming, <br>tangled with business logic, <br> scattered around the code</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Resilient - how? </h3>
 					<h2>Resilient</h2>
 					<ul>
-						<li class="fragment">sorprendentemente este requerimiento es largamente ignorado o relegado para "más adelante" utilizando técnicas "ad-hoc"</li>
-						<li class="fragment">las aplicaciones deben ser "resilient" en su núcleo y demás niveles</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Failure Recovery en Java/C/C# etc...</h2>
-					<ul>
-						<li class="fragment">se realiza manejo de errores explicitamente <strong>DENTRO DE CADA THREAD</strong></li>
-						<li class="fragment">los errores no se propagan entre los threads, por lo cual <strong>NO HAY FORMA DE SABER SI ALGO HA FALLANDO</strong></li>
-						<li class="fragment">esto nos lleva a programar de forma defensiva...</li> 
-						<li class="fragment">con manejo de errores <strong>MEZCLADOS</strong> con lógica de negocio</li> 
-						<li class="fragment">esparcidos <strong>por TODO EL CÓDIGO</strong></li>
+						<li class="fragment">single thread of control</li>
+						<li class="fragment">if the thread blows up => you are screwed</li>
+						<li class="fragment">no global organization of error handling </li> 
+						<li class="fragment">defensive programming, <br>tangled with business logic, <br> scattered around the code</li>
 					</ul>
 				</section>
 
@@ -247,7 +267,7 @@
 
 
 				<!-- Scalable -->
-				<section data-background="#C55300">
+				<section data-background="#C55300" data-background-transition="zoom">
 					<h2>Scalable</h2>
 					<blockquote style="color: white;">
 						&ldquo;capable of being easily expanded or upgraded on demand.&rdquo;
@@ -327,7 +347,7 @@
 				</section>
 
 				<!-- Event Driven -->
-				<section data-background="#C55300">
+				<section data-background="#C55300" data-background-transition="zoom">
 					<h2>Event Driven</h2>
 					<blockquote style="color: white;">
 						&ldquo;The flow of the program is determined by events.&rdquo;
@@ -347,7 +367,7 @@
 					</ul>
 				</section>
 
-				<section data-background="#C55300">
+				<section data-background="#C55300" data-background-transition="zoom">
 					<h1>Conclusión</h1>
 					<ul>
 						<li class="fragment" style="color: white;">vimos a grandes rasgos lo que implica desarrollar aplicaciones con los requerimientos del "hoy"</li>
@@ -363,6 +383,7 @@
 						<p><a href="https://typesafe.com">typesafe.com</a></p>
 						<p><a href="https://medium.com/reactive-programming/what-is-reactive-programming-bc9fa7f4a7fc">Kevin Webber - What is Reactive Programming?</a></p>
 						<p><a href="http://www.slideshare.net/jboner/going-reactive-eventdriven-scalable-resilient-systems">Jonas Boner - Go Reactive: Event-Driven, Scalable, Resilient & Responsive Systems</a></p>
+						<p><a href="http://internetlivestats.com/">internetlivestats.com</a></p>
 				</section>
 			</div>
 
