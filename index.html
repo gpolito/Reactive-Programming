@@ -192,7 +192,7 @@
 
 				<section>
 					<h2>Resilient</h2>
-					<p class="fragment">The system stays responsive in the face of failure.</p>
+					<p class="fragment">The system should be responsive in the face of failure.</p>
 					<p class="fragment" style="color: orange;">Failure != error</p>
 					<p class="fragment"><br>Examples of failures:</p>
 					<ul>
@@ -224,12 +224,62 @@
 				</section>
 
 				<section>
-					<h3 style="color: orange;">Resilience is by design</h3>
-					<h3 class="fragment">How?</h3>
-					<ul>
-						<li class="fragment">bulkheads + supervisors</li>
-						<li class="fragment">message driven arquitecture</li>
-					</ul>
+					<h2 style="color: orange;">Resilience is by design</h2>
+					<h2 class="fragment">ok... but how?</h2>
+					<ol>
+						<li class="fragment">containment</li> 
+						<li class="fragment">delegation</li>
+						<li class="fragment">isolation</li>
+						<li class="fragment">replication</li>
+					</ol>
+					<br/>
+					<br/>
+					<aside class="notes">
+						Cómo vamos a alcanzar la resiliencia? Contando con compartimientos que contengan a las fallas, y q aislen a los componentes entre si, permitiendo que partes del sistema puedan caerse y recuperarse sin comprometer al sistema entero.
+						La recuperación de cada componente es delegado a otro componente externo. El cliente no es responsable de manejar las fallas.  
+						La alta disponibilidad es asegurada replicando componentes donde sea necesario.
+					</aside>
+				</section>
+
+				<section>
+					<h3>Resilience is by design</h3>
+					<h3 class="fragment">ok... but how?</h3>
+					<ol>
+						<li class="fragment" style="color: orange;"><strong>containment:</strong><br>
+							<span class="fragment"><em style="color: pink;">=> bulkheads</em></span>
+						</li> 
+						<li class="fragment" style="color: orange;"><strong>delegation</strong><br>
+							<span class="fragment"><em style="color: pink;">=> supervision</em></span>
+						</li>
+					</ol>
+				</section>
+
+				<section>
+					<h3>Resilience is by design</h3>
+					<h3 class="fragment">ok... but how?</h3>
+					<ol start="3">
+						<li class="fragment" style="color: orange;"> <strong>isolation (decoupling, both in time and space)</strong>
+							<br>
+							<span class="fragment" style="color: white;">
+								<span style="color: skyblue">- in time:</span> 
+								<br>sender and receiver don't need to be present at the same time for communicate
+							</span>
+							<br>
+							<span class="fragment">
+								<em style="color: pink;">=> message-driven arquitecture</em>
+							</span> <br>
+							<span class="fragment" style="color: white;">
+								<span style="color: skyblue">- in space (defined as Location Transparency):</span> 
+								<br>the sender and receiver don't have to run in the same process, and this might change during application's lifetime
+							</span> <br>
+							<span class="fragment">
+								<em style="color: pink;">=> message-driven arquitecture</em>
+							</span>	
+						</li>
+						<li class="fragment" style="color: orange;"><strong>replication:</strong><br>
+							<span class="fragment"><em style="color: pink;">=> circuit breakers (design pattern)</em></span>
+						</li>
+					</ol>
 				</section>
 
 				<section data-background="assets/ship.png" data-background-repeat="repeat" data-background-size="1200px">
@@ -246,12 +296,16 @@
 					</ol>
 					<br>
 					<br>
-					<p class="fragment">should be used together with <span style="color: orange;">supervison!</span></p>
+					<p class="fragment">this concept should be used together with <span style="color: orange;">supervison!</span></p>
 				</section>
 
 				<section>
 					<h2>Supervison</h2>
-					<img style="border: none; box-shadow: none;" src="assets/supervisor-1.png">
+					<h3 class="fragment" style="color: orange;">Core Concept</h3>
+					<img class="fragment" style="border: none; box-shadow: none;" src="assets/supervisor-1.png">
+					<aside class="notes">
+						Supervision means that normal requests and responses (including negative ones such as validation errors) flow separately from failures: while the former are exchanged between the user and the service, the latter travel from the service to its supervisor.
+					</aside>
 				</section>
 
 				<section>
@@ -262,6 +316,7 @@
 				<section>
 					<h2>Supervisor hierarchies with Actors</h2>
 					<img style="border: none; box-shadow: none;" src="assets/supervisor-h-2.png">
+					<p class="fragment" style="color: orange;"><em>we'll see later how to configure it in Akka...</em></p>
 				</section>
 
 				<section>
