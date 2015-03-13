@@ -154,6 +154,11 @@
 					<h2 style="color: white;">Reactive Applications Traits</h2>
 					<img style="border: none; box-shadow: none;" src="assets/reactive-traits.png" />
 					<strong><a class="fragment" style="color: white;" href="http://reactivemanifesto.org/">reactivemanifesto.org</a></strong>
+					<aside class="notes">
+					Organisations working in disparate domains are independently discovering patterns for building software that look the same. These systems are more robust, more resilient, more flexible and better positioned to meet modern demands.
+					These changes are happening because application requirements have changed dramatically in recent years. 
+					It is time to apply these design principles consciously from the start instead of rediscovering them each time.
+					</aside>
 				</section>
 
 				<!-- Responsive -->
@@ -168,8 +173,8 @@
 				<section>
 					<h2>Responsive</h2>
 						<p class="fragment" style="color: crimson;">isn't the same than Web Responsive Design!</p>
-						<p class="fragment" >Problems have to be detected quickly and dealt with effectively, to provide rapid and consistent response times.</p>
-						<p class="fragment">it depends on, and is a consecuence of the traits: <p/>
+						<p class="fragment">Problems have to be detected quickly and dealt with effectively, to provide rapid and consistent response times.</p>
+						<p class="fragment">It depends on, and is a consecuence of the traits: <p/>
 						<p class="fragment"><em style="color: orange;">Resilient</em> and <em style="color: orange;">Elastic</em></p>
 				</section>
 
@@ -182,12 +187,13 @@
 						&ldquo;The capacity to recover quickly from difficulties.&rdquo;
 					</blockquote>
 					<p style="color: white;">Merriam Webster</p>
+					<aside class="notes">Merriam–Webster Inc. de Springfield, Massachusetts, es una editorial estadounidense que publica libros de referencia, sobre todo diccionarios, que tienen su origen en el diccionario An American Dictionary of the English Language, de Noah Webster, publicado a su vez en 1828.</aside>
 				</section>
 
 				<section>
 					<h2>Resilient</h2>
 					<p class="fragment">The system stays responsive in the face of failure.</p>
-					<p class="fragment" style="color: orange;">Failure != error (e.g. validation error)</p>
+					<p class="fragment" style="color: orange;">Failure != error</p>
 					<p class="fragment"><br>Examples of failures:</p>
 					<ul>
 						<li class="fragment">program defects causing corrupted internal state</li>
@@ -195,60 +201,67 @@
 						<li class="fragment">network failures</li>
 						<li class="fragment">troubles with external services</li>
 					</ul>
+					<aside class="notes">
+						A failure is an unexpected event within a service that prevents it from continuing to function normally. A failure will generally prevent responses to the current, and possibly all following, client requests. This is in contrast with an error, which is an expected and coded-for condition—for example an error discovered during input validation, that will be communicated to the client as part of the normal processing of the message. 
+					</aside>
+				</section>
+
+				<section data-background="#FFFFFF">
+					<h3 style="color: #002B36">Resilient - how? </h3>
+					<h3 style="color: orange;">Failure Recovery in OOP</h3>
+					<img style="border: none; box-shadow: none; width: 60%" src="assets/oo-graph.png" />
 				</section>
 
 				<section>
 					<h3>Resilient - how? </h3>
-					<h2 style="color: orange;">Failure Recovery in OOP </h2>
+					<h3 style="color: orange;">Failure Recovery in OOP </h3>
 					<ul>
 						<li class="fragment">single thread of control</li>
 						<li class="fragment">if the thread blows up => you are screwed</li>
 						<li class="fragment">no global organization of error handling </li> 
-						<li class="fragment">defensive programming, <br>tangled with business logic, <br> scattered around the code</li>
+						<li class="fragment">defensive programming tangled with business logic, <br> scattered around the code</li>
 					</ul>
 				</section>
 
 				<section>
-					<h3>Resilient - how? </h3>
-					<h2>Resilient</h2>
+					<h3 style="color: orange;">Resilience is by design</h3>
+					<h3 class="fragment">How?</h3>
 					<ul>
-						<li class="fragment">single thread of control</li>
-						<li class="fragment">if the thread blows up => you are screwed</li>
-						<li class="fragment">no global organization of error handling </li> 
-						<li class="fragment">defensive programming, <br>tangled with business logic, <br> scattered around the code</li>
+						<li class="fragment">bulkheads + supervisors</li>
+						<li class="fragment">message driven arquitecture</li>
 					</ul>
 				</section>
 
 				<section data-background="assets/ship.png" data-background-repeat="repeat" data-background-size="1200px">
-					<h2 >Failure Recovery - THE RIGHT WAY</h2>
 					<h2 style="color : black;">Bulkheads</h2>
 				</section>
 
 				<section>
-					<h2>Failure Recovery - THE RIGHT WAY</h2>
+					<h2>Bulkheads help us to:</h2>
 					<ol>
-						<li class="fragment"><em>aislar la falla</em></li>
-						<li class="fragment"><em>compartimentizarla</em></li>
-						<li class="fragment"><em>manejarlas localmente</em></li>
-						<li class="fragment"><em>evitar fallas en cascada</em></li>
+						<li class="fragment"><em>isolate the failure</em></li>
+						<li class="fragment"><em>compartmentalize</em></li>
+						<li class="fragment"><em>manage failure locally</em></li>
+						<li class="fragment"><em>avoid cascading failures</em></li>
 					</ol>
-					<br/>
-					<br/>
-					<p class="fragment">todo esto junto con <strong>SUPERVISORES</strong> </p>
+					<br>
+					<br>
+					<p class="fragment">should be used together with <span style="color: orange;">supervison!</span></p>
 				</section>
 
 				<section>
-					<h2>Bulkheads + Supervisores</h2>
-					<ol>
-						<li class="fragment">definir procesos aislados y livianos (en compartimientos)</li>
-						<li class="fragment">supervisar estos procesos:</li>
-						<p class="fragment"> -  cada proceso tiene un proceso supervisor padre</p>
-						<p class="fragment"> -  cada error es capturado y enviado como evento (async) al supervisor</p>
-						<p class="fragment"> -  el supervisor maneja las fallas - pudiendo matar, reiniciar, suspender/reaundar el proceso</p>
-						<li class="fragment">la semántica deber ser la misma para procesos locales o remotos</li>
-						<li class="fragment">de esta manera, se desacopla el manejo de errores de la lógica de negocio</li>
-					</ol>
-					<p class="fragment"><strong>soportado en el paradigma de actores... (lo veremos más adelante)</strong></p>
+					<h2>Supervison</h2>
+					<img style="border: none; box-shadow: none;" src="assets/supervisor-1.png">
+				</section>
+
+				<section>
+					<h2>Supervisor hierarchies with Actors</h2>
+					<img style="border: none; box-shadow: none;" src="assets/supervisor-h-1.png">
+				</section>
+
+				<section>
+					<h2>Supervisor hierarchies with Actors</h2>
+					<img style="border: none; box-shadow: none;" src="assets/supervisor-h-2.png">
 				</section>
 
 				<section>
