@@ -322,8 +322,7 @@
 
 				<section>
 					<h2>Circuit Breaker</h2>
-					<h3 style="color: orange;">PROBLEM</h3>
-					<p>Let's supouse that:</p>
+					<h3 style="color: orange;">PROBLEM - Example Situation</h3>
 					<ul>
 						<li class="fragment">web app interacting with a remote WS</li>
 						<li class="fragment">remote WS is overloaded, and its DB takes a long time to respond with a fail</li>
@@ -331,7 +330,8 @@
 						<li class="fragment">=> web users noticed that form submissions takes time to complete</li>
 						<li class="fragment">=> web users start to click the refresh button adding more requests!</li>
 						<li class="fragment">=> web app fails due to resource exhaustion, affecting all users across the site</li>
-					</ul>	
+					</ul>
+					<p class="fragment" style="color: orange;"><em>failures in external dependencies shouldn' t bring down an entire app</em></p>
 				</section>
 
 				<section>
@@ -395,18 +395,6 @@
 					</ul>
 				</section>
 
-				<section data-markdown>
-				    <script type="text/template">
-				        ## Page title
-
-				        A paragraph with some text and a [link](http://hakim.se).
-				    </script>
-				</section>
-				
-				<section data-background="#FFFFFF">
-					<script src="https://gist.github.com/patriknw/3826446.js"></script>
-				</section>
-
 				<section data-background="#FFFFFF">
 					<h2 style="color: #002B36">Circuit Breaker</h2>
 					<h3 style="color: orange;">Akka Implementation</h3>
@@ -418,6 +406,26 @@
 						<li class="fragment">If the first call succeeds, the breaker is reset back to <em>Closed state</em></li>
 						<li class="fragment">If the first call fails, the breaker is tripped again into the <em>Open state</em> for another full <em>resetTimeout</em></li>
 					</ul>
+				</section>
+
+				<section>
+					<h2>Circuit Breaker</h2>
+					<h3 style="color: orange;">Akka Implementation</h3>
+				    <pre><code contenteditable>
+import akka.pattern.CircuitBreaker
+ 
+val breaker =
+  CircuitBreaker(system.scheduler, 
+    maxFailures = 5, 
+    callTimeout = 10.seconds, 
+    resetTimeout = 1.minute)
+ 
+def dangerous: Future[String] = 
+	breaker.withCircuitBreaker(Future(dangerousCall))
+ 
+def dangerousCall: String = "This really isn't that dangerous"
+
+					</code></pre>
 				</section>
 
 				<section>
