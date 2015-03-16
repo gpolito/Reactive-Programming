@@ -321,6 +321,106 @@
 				</section>
 
 				<section>
+					<h2>Circuit Breaker</h2>
+					<h3 style="color: orange;">PROBLEM</h3>
+					<p>Let's supouse that:</p>
+					<ul>
+						<li class="fragment">web app interacting with a remote WS</li>
+						<li class="fragment">remote WS is overloaded, and its DB takes a long time to respond with a fail</li>
+						<li class="fragment">=> WS calls fail after a long period of time</li>
+						<li class="fragment">=> web users noticed that form submissions takes time to complete</li>
+						<li class="fragment">=> web users start to click the refresh button adding more requests!</li>
+						<li class="fragment">=> web app fails due to resource exhaustion, affecting all users across the site</li>
+					</ul>	
+				</section>
+
+				<section>
+					<h2>Circuit Breaker</h2>
+					<h3 style="color: orange;">Solution Proposal</h3>
+					<ol>
+						<li class="fragment">monitor response times</li>
+						<li class="fragment">if time consistently rises above a threshold, either:</li>
+							<ol type="a">
+								<li class="fragment"><em>fail fast</em> approach, or...</li>
+								<li class="fragment">route following requests to an alternative service</li>
+							</ol>
+						<li class="fragment">monitor the original service</li>
+						<li class="fragment"><em>if the service is back in shape</em>, restore to the original state</li>
+						<li class="fragment"><em>if not</em>, continue with the same approach</li>
+					</ol>
+				</section>
+
+				<section data-background="#FFFFFF">
+					<h2 style="color: #002B36">Circuit Breaker</h2>
+					<h3 style="color: orange;">Akka Implementation</h3>
+					<ul>
+						<li class="fragment">implements <em>fail fast</em> approach</li>
+						<li class="fragment">provide stability</li>
+						<li class="fragment">prevent cascading failures in distributed systems</li>
+					</ul>
+					<img class="fragment" style="border: none; box-shadow: none;" src="assets/circuit-breaker-states.png">
+				</section>
+
+				<section data-background="#FFFFFF">
+					<h2 style="color: #002B36">Circuit Breaker</h2>
+					<h3 style="color: orange;">Akka Implementation</h3>
+					<h3 style="color: #009B77">configuration</h3>
+					<ul>
+						<li class="fragment"><em>max. number of failures</em></li>
+						<li class="fragment"><em>call timeout</em>: response time threshold</li>
+						<li class="fragment"><em>reset timeout</em>: we'll see this later</li>
+					</ul>
+				</section>
+
+				<section data-background="#FFFFFF">
+					<h2 style="color: #002B36">Circuit Breaker</h2>
+					<h3 style="color: orange;">Akka Implementation</h3>
+					<h3 style="color: #009B77">Closed state (normal operation)</h3>
+					<img class="fragment" style="border: none; box-shadow: none;" src="assets/circuit-breaker-states.png">
+					<ul>
+						<li class="fragment">Exceptions or calls exceeding the configured <em>callTimeout</em> increment a failure counter</li>
+						<li class="fragment">Successes reset the failure count to 0</li>
+						<li class="fragment">When the failure counter reaches a <em>maxFailures</em> count, the breaker is tripped into <em>Open State</em></li>
+					</ul>
+				</section>
+
+				<section data-background="#FFFFFF">
+					<h2 style="color: #002B36">Circuit Breaker</h2>
+					<h3 style="color: orange;">Akka Implementation</h3>
+					<h3 style="color: #009B77">Open State</h3>
+					<img class="fragment" style="border: none; box-shadow: none;" src="assets/circuit-breaker-states.png">
+					<ul>
+						<li class="fragment">All calls fail-fast with a <em>CircuitBreakerOpenException</em></li>
+						<li class="fragment">After the configured <em>resetTimeout</em>, the circuit breaker enters a <em>Half-Open State</em></li>
+					</ul>
+				</section>
+
+				<section data-markdown>
+				    <script type="text/template">
+				        ## Page title
+
+				        A paragraph with some text and a [link](http://hakim.se).
+				    </script>
+				</section>
+				
+				<section data-background="#FFFFFF">
+					<script src="https://gist.github.com/patriknw/3826446.js"></script>
+				</section>
+
+				<section data-background="#FFFFFF">
+					<h2 style="color: #002B36">Circuit Breaker</h2>
+					<h3 style="color: orange;">Akka Implementation</h3>
+					<h3 style="color: #009B77">Half-Open State</h3>
+					<img class="fragment" style="border: none; box-shadow: none;" src="assets/circuit-breaker-states.png">
+					<ul>
+						<li class="fragment">The first call attempted is allowed through without failing fast</li>
+						<li class="fragment">All other calls fail-fast with an exception just as in <em>Open state</em></li>
+						<li class="fragment">If the first call succeeds, the breaker is reset back to <em>Closed state</em></li>
+						<li class="fragment">If the first call fails, the breaker is tripped again into the <em>Open state</em> for another full <em>resetTimeout</em></li>
+					</ul>
+				</section>
+
+				<section>
 					<h2>Event-driven Resiliency</h2>
 					<p>Una arquitectura basada en eventos nos brinda la base necesaria para implementar este modelo de manejo de fallas:</p>
 					<ul>
