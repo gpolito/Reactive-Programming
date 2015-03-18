@@ -248,6 +248,7 @@
 					<ol>
 						<li class="fragment" style="color: orange;"><strong>containment:</strong><br>
 							<span class="fragment"><em style="color: pink;">=> bulkheads</em></span>
+							<span class="fragment"><em style="color: pink;">=> circuit breaker</em></span>
 						</li> 
 						<li class="fragment" style="color: orange;"><strong>delegation</strong><br>
 							<span class="fragment"><em style="color: pink;">=> supervision</em></span>
@@ -268,7 +269,7 @@
 							<br>
 							<span class="fragment">
 								<em style="color: pink;">=> message-driven arquitecture</em>
-							</span> <br>
+							</span> <br><br>
 							<span class="fragment" style="color: white;">
 								<span style="color: skyblue">- in space (defined as <em>Location Transparency</em>):</span> 
 								<br>the sender and receiver don't have to run in the same process, and this might change during application's lifetime
@@ -276,9 +277,6 @@
 							<span class="fragment">
 								<em style="color: pink;">=> message-driven arquitecture</em>
 							</span>	
-						</li>
-						<li class="fragment" style="color: orange;"><strong>replication:</strong><br>
-							<span class="fragment"><em style="color: pink;">=> circuit breakers (design pattern)</em></span>
 						</li>
 					</ol>
 				</section>
@@ -318,6 +316,24 @@
 					<h2>Supervisor hierarchies with Actors</h2>
 					<img style="border: none; box-shadow: none;" src="assets/supervisor-h-2.png">
 					<p class="fragment" style="color: orange;"><em>we'll see later how to configure it in Akka...</em></p>
+				</section>
+
+  				<section>
+					<h2>Supervisor hierarchies with Actors</h2>
+					<h3 style="color: orange;">Configuration in Akka</h3>
+				    <pre><code class="scala" contenteditable>
+import akka.actor.OneForOneStrategy
+import akka.actor.SupervisorStrategy._
+import scala.concurrent.duration._
+ 
+override val supervisorStrategy =
+  OneForOneStrategy(maxNrOfRetries = 10, withinTimeRange = 1 minute) {
+    case _: ArithmeticException      => Resume
+    case _: NullPointerException     => Restart
+    case _: IllegalArgumentException => Stop
+    case _: Exception                => Escalate
+  }
+					</code></pre>
 				</section>
 
 				<section>
@@ -379,7 +395,7 @@
 					<img class="fragment" style="border: none; box-shadow: none;" src="assets/circuit-breaker-states.png">
 					<ul>
 						<li class="fragment">Exceptions or calls exceeding the configured <em>callTimeout</em> increment a failure counter</li>
-						<li class="fragment">Successes reset the failure count to 0</li>
+						<li class="fragment">Successes reset the failure count to 0 (zero)</li>
 						<li class="fragment">When the failure counter reaches a <em>maxFailures</em> count, the breaker is tripped into <em>Open State</em></li>
 					</ul>
 				</section>
@@ -411,9 +427,11 @@
 				<section>
 					<h2>Circuit Breaker</h2>
 					<h3 style="color: orange;">Akka Implementation</h3>
-				    <pre><code contenteditable>
+				    <pre><code class="scala" contenteditable>
 import akka.pattern.CircuitBreaker
  
+def dangerousCall: String = "This really isn't that dangerous"
+
 val breaker =
   CircuitBreaker(system.scheduler, 
     maxFailures = 5, 
@@ -423,25 +441,77 @@ val breaker =
 def dangerous: Future[String] = 
 	breaker.withCircuitBreaker(Future(dangerousCall))
  
-def dangerousCall: String = "This really isn't that dangerous"
-
 					</code></pre>
 				</section>
 
 				<section>
-					<h2>Event-driven Resiliency</h2>
-					<p>Una arquitectura basada en eventos nos brinda la base necesaria para implementar este modelo de manejo de fallas:</p>
+					<h2>Back Pressure</h2>
 					<ul>
-						<li class="fragment"><strong>Isolation:</strong></li>
-						<p class="fragment">- necesario para que un sistema se pueda auto-recuperar</p>
-						<p class="fragment">- fallo en un componente aislado no impacta el <strong>responsiveness</strong> de todo el sistema, dando chance además para que se auto-recupere</p>
-						<li class="fragment"><strong>Location Transparency:</strong></li>
-						<p class="fragment">permite trabajar con referencias a componentes, independientemente de si éstos están deployados en el mismo nodo o no </p>
-						<li class="fragment"><strong>Dedicated separate error channel:</strong></li>
-						<p class="fragment">permite redireccionar una señal de error a un lugar específico, en lugar de reenviarla al proceso 'llamante'</p>
+						<li class="fragment" style="color: orange;">Problem Description</li>
+						<ul>
+							<li class="fragment" style="color: pink"><strong>speed(publisher) > speed(suscriber)</strong></li>
+							<li class="fragment">when a component is under <em>stress</em> it might <em>fail catastrophically</em> or <em>drop messages</em> in an uncontrolled fashion</li>
+							
+							<li class="fragment"><em>to be more resilient, the system as a whole</em> needs to <em>react</em> to avoid this kind of situations</li>
+
+						</ul>
+						<li class="fragment" style="color: orange;">Solution</li>
+						<ul>
+							<li class="fragment" style="color: pink"><strong>speed(publisher) < speed(suscriber)</strong></li>
+							<li class="fragment"><strong style="color: #009B77"><em>Back pressure: </em></strong><br>
+								the component should communicate that is under stress to upstream components, so they can start reducing the load</li>
+						</ul>
 					</ul>
 				</section>
 
+				<section data-background="#FFFFFF">
+					<h2 style="color: orange;">Back Pressure</h2>
+					<img style="border: none; box-shadow: none;" src="assets/back-pressure.png">
+				</section>
+
+				<section data-background="#FFFFFF">
+					<h2 style="color: orange;">Back Pressure</h2>
+					<p style="color: #009B77">this mechanism is included into the <strong>Reactive Stream</strong> specification</p>
+					<p></p>
+					
+					<img width="50%" style="border: none; box-shadow: none;" src="assets/reactive-streams-page.png">
+					<p><a style="color: #009B77" href="http://reactive-streams.org/">http://reactive-streams.org/</a></p>
+				</section>
+
+				<section>
+					<h2>Reactive Streams</h2>
+					<p class="fragment" style="color: orange">Stream processing on the JVM:</p>
+					<ul>
+						<li class="fragment">Asynchronous</li>
+						<li class="fragment">Back-pressured</li>
+						<li class="fragment">Standarized</li>
+					</ul>
+					<br><br>
+					<p class="fragment" style="color: orange">Available implementations:</p>
+					<ul>
+						<li class="fragment">Akka Streams</li>
+						<li class="fragment">Reactor Composable (DSL for groovy, clojure)</li>
+						<li class="fragment">RxJava</li>
+						<li class="fragment">Ratpack</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Reactive Streams</h2>
+					<h2 style="color: orange">RxJava Example</h2>
+				    <pre><code class="scala" contenteditable>
+implicit val system = ActorSystem("Sys")
+val mat = FLowMaterializer(...)
+
+Flow(text.split("" "").toVector).
+    map(word => word.toUpperCase).
+    foreach(transformed => println(transformed)).
+    onComplete(mat) {
+        case Success(_) => system.shutdown();
+        case Failure(e) => ...; system.shutdown();
+    }
+					</code></pre>
+				</section>
 
 				<!-- Scalable -->
 				<section data-background="#C55300" data-background-transition="zoom">
@@ -561,6 +631,7 @@ def dangerousCall: String = "This really isn't that dangerous"
 						<p><a href="https://medium.com/reactive-programming/what-is-reactive-programming-bc9fa7f4a7fc">Kevin Webber - What is Reactive Programming?</a></p>
 						<p><a href="http://www.slideshare.net/jboner/going-reactive-eventdriven-scalable-resilient-systems">Jonas Boner - Go Reactive: Event-Driven, Scalable, Resilient & Responsive Systems</a></p>
 						<p><a href="http://internetlivestats.com/">internetlivestats.com</a></p>
+						<p><a href="http://www.slideshare.net/ktoso/reactive-stream-processing-with-akka-streams">Reactive Stream Processing with Akka Streams</a></p>
 				</section>
 			</div>
 
