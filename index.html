@@ -4,9 +4,9 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Reactive Programming - Introducción</title>
+		<title>Reactive Systems - Overview</title>
 
-		<meta name="description" content="Introducción a la Reactive Programming">
+		<meta name="description" content="Reactive Systems - Overview">
 		<meta name="author" content="Guillermo Polito">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,8 +49,8 @@
 
 			<div class="slides">
 				<section>
-					<h1>Reactive Programming</h1>
-					<h3>Overview</h3>
+					<h1>Reactive <br>Systems</h1>
+					<h2 style="color: orange;">Overview</h2>
 					<br/>
 					<h4>Guillermo Polito</h4>
 					<p><small><a href="http://twitter.com/gpolito">@gpolito</a> / <a href="http://github.com/gpolito/Reactive-Programming">slides at github</a></small>
@@ -59,7 +59,12 @@
 
 				<section>
 					<h2>Why Reactive?</h2>
-					<h3 class="fragment"> Some things have changed...</h3>
+					<a class="fragment" href="http://internetlivestats.com/">internetlivestats.com</a>
+				</section>
+
+				<section>
+					<h2>Why Reactive?</h2>
+					<h3 class="fragment" style="color: orange;"> Some things have changed during this years...</h3>
 					<table class="fragment">
 						<thead>
 							<tr>
@@ -105,11 +110,6 @@
 
 				<section>
 					<h2>Why Reactive?</h2>
-					<a class="fragment" href="http://internetlivestats.com/">internetlivestats.com</a>
-				</section>
-
-				<section>
-					<h2>Why Reactive?</h2>
 					<h3 class="fragment">Quick summary. In 10 years:</h3>
 					<table class="fragment">
 						<thead>
@@ -145,13 +145,14 @@
 				</section>
 
 				<section>
-					<h3>Why Reactive?</h3>
-					<p>Today's demands are simply not met by yesterday’s software architectures</p>
-					<p class="fragment">A new coherent approach to Systems Architecture is needed...</p>
+					<h2>Why Reactive?</h2>
+					<p color="style: orange">Today's demands are simply not met by yesterday’s software architectures</p>
+					<p class="fragment" style="color: orange">A new coherent approach to Systems Architecture is needed...</p>
 				</section>
 
 				<section data-background="#59CDEA">
-					<h2 style="color: white;">Reactive Applications Traits</h2>
+					<h2 style="color: white;">Reactive Systems</h2>
+					<h3 style="color: white;">Traits</h3>
 					<img style="border: none; box-shadow: none;" src="assets/reactive-traits.png" />
 					<strong><a class="fragment" style="color: white;" href="http://reactivemanifesto.org/">reactivemanifesto.org</a></strong>
 					<aside class="notes">
@@ -160,6 +161,28 @@
 					It is time to apply these design principles consciously from the start instead of rediscovering them each time.
 					</aside>
 				</section>
+
+				<section>
+					<h2>AGENDA</h2>
+					<ol>
+						<li style="color: orange;">Responsive</li>
+						<li style="color: orange;">Resilient</li>
+						<ul>
+							<li>what is it?</li>
+							<li>how do we achieve it?</li>
+							<ul>		
+								<li>failure handling in OOP</li>
+								<li>the right way</li>
+								<ul>
+									<li>bulkheads, supervision</li>
+									<li>circuit breaker, back pressure</li>
+								</ul>
+							</ul>
+						</ul>
+						<li style="color: orange;">Elastic</li>
+						<li style="color: orange;">Message-driven</li>
+					</ol>
+				</section>	
 
 				<!-- Responsive -->
 
@@ -173,9 +196,17 @@
 				<section>
 					<h2>Responsive</h2>
 						<p class="fragment" style="color: crimson;">isn't the same than Web Responsive Design!</p>
-						<p class="fragment">Problems have to be detected quickly and dealt with effectively, to provide rapid and consistent response times.</p>
+						<p class="fragment">Responsive systems:</p> 
+						<ul>
+							<li class="fragment">rapid and consistent response times</li>
+							<li class="fragment">establishing reliable upper bounds to deliver a consistent QoS</li>
+							<li class="fragment">=> problems have to be detected quickly and dealt with effectively</li>
+						</ul>
+						<br><br>
 						<p class="fragment">It depends on, and is a consecuence of the traits: <p/>
 						<p class="fragment"><em style="color: orange;">Resilient</em> and <em style="color: orange;">Elastic</em></p>
+						<aside class="notes">
+						</aside>
 				</section>
 
 				<!-- Resilience -->
@@ -209,7 +240,7 @@
 				<section data-background="#FFFFFF">
 					<h3 style="color: #002B36">Resilient - how? </h3>
 					<h3 style="color: orange;">Failure Recovery in OOP</h3>
-					<img style="border: none; box-shadow: none; width: 60%" src="assets/oo-graph.png" />
+					<img class="fragment" style="border: none; box-shadow: none; width: 60%" src="assets/oo-graph.png" />
 				</section>
 
 				<section>
