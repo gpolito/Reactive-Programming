@@ -19,6 +19,8 @@
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+		
+		<link rel="stylesheet" href="css/custom.css">
 
 		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
@@ -59,130 +61,124 @@
 
 				<section>
 					<h2>Why Reactive?</h2>
-					<a class="fragment" href="http://internetlivestats.com/">internetlivestats.com</a>
+					<a href="http://internetlivestats.com/">internetlivestats.com</a>
 				</section>
 
 				<section>
 					<h2>Why Reactive?</h2>
-					<h3 class="fragment" style="color: orange;"> Some things have changed during this years...</h3>
-					<table class="fragment">
+					<h3 style="color: orange;"> Some things have changed during this years...</h3>
+					<table>
 						<thead>
 							<tr>
 								<th></th>
-								<th>Almost yesterday</th>
-								<th>Today</th>
+								<th><span style="color: #009B77">Almost yesterday</span></th>
+								<th><span style="color: #009B77">Today</span></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="fragment">
-								<td>Server nodes</td>
-								<td>10's</td>
-								<td>1000's</td>
-							</tr>
-							<tr class="fragment">
-								<td>RAM</td>
-								<td>expensive</td>
-								<td>cheap</td>
-							</tr>
-							<tr class="fragment">
-								<td>Network</td>
-								<td>slow</td>
-								<td>fast</td>
-							</tr>
-							<tr class="fragment">
-								<td>Data volume</td>
-								<td>GBs</td>
-								<td>TBs -> PBs</td>
-							</tr>
-							<tr class="fragment">
-								<td>Response times</td>
-								<td>seconds</td>
-								<td>milliseconds</td>
-							</tr>
-							<tr class="fragment">
-								<td>Maintenance downtimes</td>
-								<td>hours</td>
-								<td>none</td>
-							</tr>
+							<div>
+								<tr>
+									<td>Server nodes</td>
+									<td>10's</td>
+									<td>1000's</td>
+								</tr>
+								<tr >
+									<td>RAM</td>
+									<td>expensive</td>
+									<td>cheap</td>
+								</tr>
+								<tr>
+									<td>Network</td>
+									<td>slow</td>
+									<td>fast</td>
+								</tr>
+							</div>
+							<div>
+								<tr>
+									<td>Data volume</td>
+									<td>GBs</td>
+									<td>TBs -> PBs</td>
+								</tr>
+								<tr>
+									<td>Response times</td>
+									<td>seconds</td>
+									<td>milliseconds</td>
+								</tr>
+								<tr>
+									<td>Maintenance downtimes</td>
+									<td>hours</td>
+									<td>none</td>
+								</tr>
+							</div>
 						</tbody>
 					</table>
+					<aside class="notes">
+						- hardware
+						- user requirements
+					</aside>
 				</section>
 
 				<section>
 					<h2>Why Reactive?</h2>
-					<h3 class="fragment">Quick summary. In 10 years:</h3>
-					<table class="fragment">
+					<h3 style="color: orange;">Quick summary. In 10 years:</h3>
+					<table>
 						<thead>
 							<tr>
 								<th></th>
-								<th>2005</th>
-								<th>2015</th>
+								<th><strong>2005</strong></th>
+								<th><strong>2015</strong></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="fragment">
-								<td>Internet users</td>
-								<td><span style="color: orange;">1000 millions</span></td>
+							<tr>
+								<td><strong>Internet users</strong></td>
+								<td><span style="color: pink;">1000 millions</span></td>
 								<td>3000 millions</td>
 							</tr>
-							<tr class="fragment">
-								<td>YouTube</td>
+							<tr>
+								<td><strong>YouTube</strong></td>
 								<td>was born on February, 2005</td>
-								<td><span style="color: orange;">more than 1000 million users</span></td>
+								<td><span style="color: pink;">more than 1000 million users</span></td>
 							</tr>
-							<tr class="fragment">
-								<td>Facebook</td>
+							<tr>
+								<td><strong>Facebook</strong></td>
 								<td>5.5 million active users</td>
-								<td><span style="color: orange;">1.380 million active users</span></td>
+								<td><span style="color: pink;">1.380 million active users</span></td>
 							</tr>
-							<tr class="fragment">
-								<td>Twitter</td>
+							<tr>
+								<td><strong>Twitter</strong></td>
 								<td>wasn't born yet</td>
 								<td>288 million active users</td>
 							</tr>
 						</tbody>
 					</table>
+					<aside class="notes">
+						- primer columna primero, luego la segunda
+					</aside>
 				</section>
 
 				<section>
 					<h2>Why Reactive?</h2>
-					<p color="style: orange">Today's demands are simply not met by yesterday’s software architectures</p>
-					<p class="fragment" style="color: orange">A new coherent approach to Systems Architecture is needed...</p>
+					<h2 style="color: orange">Today's demands are simply not met by yesterday’s software architectures</h2>
+					<h2 class="fragment" style="color: orange">A new coherent approach to Systems Architecture is needed...</h2>
+					<aside class="notes">
+						lo q vimos hasta ahora fue un pantallazo de los numeros de la web hoy en dia, en donde el tráfico es impresionante. Vimos q el hardware ha mejorado y abaratado. Los requerimientos de los usuarios son muy exigentes.
+						Con las arquitecuras q conocemos hoy, sobre todo las MVC q utilizan un modelo de concurrencia basado en threads con mem compartida, se nos es muy complicado o casi imposible poder hacer frente a estos requerimientos.
+						Por lo general se utilizan mecanismos muy complicados para poder emparchar esta situación.
+					</aside>
 				</section>
 
 				<section data-background="#59CDEA">
 					<h2 style="color: white;">Reactive Systems</h2>
 					<h3 style="color: white;">Traits</h3>
 					<img style="border: none; box-shadow: none;" src="assets/reactive-traits.png" />
-					<strong><a class="fragment" style="color: white;" href="http://reactivemanifesto.org/">reactivemanifesto.org</a></strong>
+					<strong><a style="color: white;" href="http://reactivemanifesto.org/">reactivemanifesto.org</a></strong>
 					<aside class="notes">
 					Organisations working in disparate domains are independently discovering patterns for building software that look the same. These systems are more robust, more resilient, more flexible and better positioned to meet modern demands.
 					These changes are happening because application requirements have changed dramatically in recent years. 
 					It is time to apply these design principles consciously from the start instead of rediscovering them each time.
 					</aside>
 				</section>
-
-				<section>
-					<h2>AGENDA</h2>
-					<ol>
-						<li style="color: orange;">Responsive</li>
-						<li style="color: orange;">Resilient</li>
-						<ul>
-							<li>what is it?</li>
-							<li>how do we achieve it?</li>
-							<ul>		
-								<li>failure handling in OOP</li>
-								<li>the right way</li>
-								<ul>
-									<li>bulkheads, supervision</li>
-									<li>circuit breaker, back pressure</li>
-								</ul>
-							</ul>
-						</ul>
-						<li style="color: orange;">Elastic</li>
-						<li style="color: orange;">Message-driven</li>
-					</ol>
-				</section>	
 
 				<!-- Responsive -->
 
@@ -194,22 +190,33 @@
 				</section>
 
 				<section>
-					<h2>Responsive</h2>
-						<p class="fragment" style="color: crimson;">isn't the same than Web Responsive Design!</p>
-						<p class="fragment">Responsive systems:</p> 
-						<ul>
-							<li class="fragment">rapid and consistent response times</li>
-							<li class="fragment">establishing reliable upper bounds to deliver a consistent QoS</li>
-							<li class="fragment">=> problems have to be detected quickly and dealt with effectively</li>
-						</ul>
-						<br><br>
-						<p class="fragment">It depends on, and is a consecuence of the traits: <p/>
-						<p class="fragment"><em style="color: orange;">Resilient</em> and <em style="color: orange;">Elastic</em></p>
+					<h2>Responsive Systems</h2>
+						<div class="fragment">
+							<p style="color: orange">offer:</p>
+							<ul>
+								<li >rapid and consistent response times</li>
+								<li>reliable upper bounds to deliver a consistent QoS</li>
+							</ul>
+							<br><br>
+						</div>
+						<div class="fragment">
+							<p style="color: orange">should:</p>
+							<ul>
+								<li class="fragment">detect problems quickly and dealt with them effectively</li>
+							</ul>
+						</div>
 						<aside class="notes">
 						</aside>
 				</section>
 
 				<!-- Resilience -->
+
+				<section data-background="#59CDEA">
+					<h2 style="color: white;">Reactive Systems</h2>
+					<h3 style="color: white;">Traits</h3>
+					<img style="border: none; box-shadow: none;" src="assets/reactive-traits.png" />
+					<strong><a style="color: white;" href="http://reactivemanifesto.org/">reactivemanifesto.org</a></strong>
+				</section>
 
 				<section data-background="#C55300" data-background-transition="zoom">
 					<h2>Resilient</h2>
@@ -223,9 +230,9 @@
 
 				<section>
 					<h2>Resilient</h2>
-					<p class="fragment">The system should be responsive in the face of failure.</p>
-					<p class="fragment" style="color: orange;">Failure != error</p>
-					<p class="fragment"><br>Examples of failures:</p>
+					<h3 style="color: orange;">The system should be responsive <br>in the face of failure.</h3>
+					<h2 class="fragment" style="color: brown;">Failure != Error</h2>
+					<h3 class="fragment"><br>Examples of failures:</h3>
 					<ul>
 						<li class="fragment">program defects causing corrupted internal state</li>
 						<li class="fragment">hardware malfunction</li>
@@ -238,14 +245,14 @@
 				</section>
 
 				<section data-background="#FFFFFF">
-					<h3 style="color: #002B36">Resilient - how? </h3>
-					<h3 style="color: orange;">Failure Recovery in OOP</h3>
+					<h2 style="color: #002B36">Resilient - how? </h2>
+					<h2 style="color: orange;">Failure Recovery in OOP</h2>
 					<img class="fragment" style="border: none; box-shadow: none; width: 60%" src="assets/oo-graph.png" />
 				</section>
 
 				<section>
-					<h3>Resilient - how? </h3>
-					<h3 style="color: orange;">Failure Recovery in OOP </h3>
+					<h2>Resilient - how? </h2>
+					<h2 style="color: orange;">Failure Recovery in OOP </h2>
 					<ul>
 						<li class="fragment">single thread of control</li>
 						<li class="fragment">if the thread blows up => you are screwed</li>
@@ -255,13 +262,17 @@
 				</section>
 
 				<section>
-					<h2 style="color: orange;">Resilience is by design</h2>
-					<h2 class="fragment">ok... but how?</h2>
-					<ol>
-						<li class="fragment">containment</li> 
-						<li class="fragment">delegation</li>
-						<li class="fragment">isolation</li>
-						<li class="fragment">replication</li>
+					<h1 style="color: orange;">Resilience is by design</h1>
+					<h1 class="fragment">ok... but how?</h1>
+				</section>
+
+				<section>
+					<h2 style="color: orange;">Resilience is by design - How?</h2>
+					<ol style="font-size: 130%"><br>
+						<li>containment</li> <br>
+						<li>delegation</li><br>
+						<li>isolation</li><br>
+						<li>replication</li><br>
 					</ol>
 					<br/>
 					<br/>
@@ -274,38 +285,38 @@
 				</section>
 
 				<section>
-					<h3>Resilience is by design</h3>
-					<h3 class="fragment">ok... but how?</h3>
-					<ol>
-						<li class="fragment" style="color: orange;"><strong>containment:</strong><br>
-							<span class="fragment"><em style="color: pink;">=> bulkheads</em></span>
-							<span class="fragment"><em style="color: pink;">=> circuit breaker</em></span>
-						</li> 
-						<li class="fragment" style="color: orange;"><strong>delegation</strong><br>
-							<span class="fragment"><em style="color: pink;">=> supervision</em></span>
+					<h2>Resilience is by design - How?</h2>
+					<ol style="font-size: 130%">
+						<br>
+						<li style="color: orange;"><strong>containment:</strong><br><br>
+							<span><em style="color: pink;">=> bulkheads</em></span><br>
+							<span><em style="color: pink;">=> circuit breaker</em></span>
+						</li>
+						<br> 
+						<li style="color: orange;"><strong>delegation</strong><br><br>
+							<span><em style="color: pink;">=> supervision</em></span>
 						</li>
 					</ol>
 				</section>
 
 				<section>
-					<h3>Resilience is by design</h3>
-					<h3 class="fragment">ok... but how?</h3>
+					<h2>Resilience is by design - How?</h2>
 					<ol start="3">
-						<li class="fragment" style="color: orange;"> <strong>isolation (decoupling, both in time and space)</strong>
-							<br>
-							<span class="fragment" style="color: white;">
+						<li style="color: orange;"> <strong>isolation (decoupling, both in time and space)</strong>
+							<br><br>
+							<span style="color: white;">
 								<span style="color: skyblue">- in time:</span> 
 								<br>sender and receiver don't need to be present at the same time for communicate
 							</span>
 							<br>
-							<span class="fragment">
+							<span>
 								<em style="color: pink;">=> message-driven arquitecture</em>
 							</span> <br><br>
-							<span class="fragment" style="color: white;">
+							<span style="color: white;">
 								<span style="color: skyblue">- in space (defined as <em>Location Transparency</em>):</span> 
 								<br>the sender and receiver don't have to run in the same process, and this might change during application's lifetime
 							</span> <br>
-							<span class="fragment">
+							<span>
 								<em style="color: pink;">=> message-driven arquitecture</em>
 							</span>	
 						</li>
@@ -314,6 +325,7 @@
 
 				<section data-background="assets/ship.png" data-background-repeat="repeat" data-background-size="1200px">
 					<h1 style="color : black;">Bulkheads</h1>
+					<aside class="notes">una vez q sabemos las propiedades q tenemos q tener en el diseño para lograr la resiliencia, vamos a revisar cada una de éstas.</aside>
 				</section>
 
 				<section>
@@ -346,7 +358,6 @@
 				<section>
 					<h2>Supervisor hierarchies with Actors</h2>
 					<img style="border: none; box-shadow: none;" src="assets/supervisor-h-2.png">
-					<p class="fragment" style="color: orange;"><em>we'll see later how to configure it in Akka...</em></p>
 				</section>
 
   				<section>
@@ -529,7 +540,7 @@ def dangerous: Future[String] =
 
 				<section>
 					<h2>Reactive Streams</h2>
-					<h2 style="color: orange">RxJava Example</h2>
+					<h2 style="color: orange">Akka Streams Example</h2>
 				    <pre><code class="scala" contenteditable>
 implicit val system = ActorSystem("Sys")
 val mat = FLowMaterializer(...)
@@ -538,35 +549,55 @@ Flow(text.split("" "").toVector).
     map(word => word.toUpperCase).
     foreach(transformed => println(transformed)).
     onComplete(mat) {
-        case Success(_) => system.shutdown();
+        case Success(_) => ...; system.shutdown();
         case Failure(e) => ...; system.shutdown();
     }
 					</code></pre>
 				</section>
 
-				<!-- Scalable -->
+				<!-- Elastic -->
+
+				<section data-background="#59CDEA">
+					<h2 style="color: white;">Reactive Systems</h2>
+					<h3 style="color: white;">Traits</h3>
+					<img style="border: none; box-shadow: none;" src="assets/reactive-traits.png" />
+					<strong><a style="color: white;" href="http://reactivemanifesto.org/">reactivemanifesto.org</a></strong>
+				</section>
+
 				<section data-background="#C55300" data-background-transition="zoom">
-					<h2>Scalable</h2>
-					<blockquote style="color: white;">
-						&ldquo;capable of being easily expanded or upgraded on demand.&rdquo;
-					</blockquote>
-					<p style="color: white;">Merriam Webster</p>
+					<h2 style="color: burlywood">Elasticity</h2>
+					<div class="fragment">
+					<h1>Scalability</h1>
+					<h1>+</h1>
+					<h1>automatic resource management</h1>
+					</div>
+				</section>
+
+				<section data-background="#C55300" data-background-transition="zoom">
+					<p style="font-size: 150%; color: white; text-transform: none;">slidesLanguageService().setLang(Lang.SPANISH)</p>
+				</section>
+
+				<section>
+					<h2>Scalability - Qué significa? - (1)</h3>
+					<div class="fragment" style= "color: orange; font-size: 200%">
+						<p>performance del sistema</p>
+						<p>es proporcional</p> 
+						<p>a los recursos reservados</p> 
+					</div>
+				</section>
+
+				<section>
+					<h2>Scalability - Qué significa? - (2)</h3>
+					<div class="fragment" style= "color: orange">
+						<h1 style= "color: orange">Scale OUT & IN <span style="color: grey; font-size: 70%">(horizontal)</span></h1>
+						<h2 style= "color: orange"> + </h2>
+						<h1 style= "color: orange">Scale UP & DOWN <span style="color: grey; font-size: 70%">(vertical)</span></h1>
+					</div>
 				</section>
 
 				<section>
 					<h2>Scalability</h2>
-					<h3>Qué significa?</h3>
-					<ul>
-						<li class="fragment">capacidad de expandirse/contraerse de acuerdo a su uso</li>
-						<li class="fragment">es necesario hacer <em>elásticas</em> las aplicaciones bajo demanda, permitiendo:</li>
-						<p class="fragment">- agregar o quitar nodos- <strong>scale out/in</strong></p>
-						<p class="fragment">- obtener o liberar CPUs en cada nodo - <strong>scale up/down</strong></p>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Scalability</h2>
-					<h3>Por qué es necesario?</h3>
+					<h3 style= "color: orange;">Por qué es necesario?</h3>
 					<ul>
 						<li class="fragment">por ejemplo: en el dominio eCommerce:</li>
 						<p class="fragment">- los picos de tráfico mas altos se dan cuando cuando estás vendiendo bien</p>
@@ -575,94 +606,131 @@ Flow(text.split("" "").toVector).
 				</section>
 
 				<section>
-					<h2>Scalability</h2>
-					<h3>Cómo lo logramos?</h3>
-					<ul>
-						<li class="fragment">primero se debe elegir el paradigma a utilizar...</li>
-						<li class="fragment">... y luego el/los lenguaje/s y las herramientas sobre las que se va a construir</li>
-						<li class="fragment">usualmente se hace lo contrario, y una vez que las decisiones técnicas están tomadas es muy dificil de revertir el cambio de paradigma</li>
+					<h1 style="color: orange">Cómo lo logramos?</h1>
+					<ul style="font-size: 120%">
+						<li>Never Block -> Go Async</li><br>
+						<li>Share Nothing -> Use Immutable Data</li><br>
+						<li>Location Transparency</li><br>
 					</ul>
 				</section>
 
-				<section>
-					<h2>Scalability</h2>
-					<h3>Modelos de Concurrencia</h3>
-					<ul>
-						<li class="fragment">Threads-based Concurrency and Shared Memory</li>
-						<li class="fragment">Message-driven Concurrency</li>
-					</ul>
+				<section data-background="white">
+					<h2 style="color: orange">Never Block -> Go Async</h2>
+					<img style="border: none; box-shadow: none;" src="assets/contention.png">
+				</section>
+
+				<section data-background="white">
+					<h2 style="color: orange">Share Nothing -> Use Immutable Data</h2>
+					<img style="border: none; box-shadow: none; width: 74%" src="assets/amdahl.png">
 				</section>
 
 				<section>
-					<h2>Scalability</h2>
-					<h3>Modelos de Concurrencia</h3>
-					<h3>Threads-based Concurrency and Shared Memory</h3>
-					<ul>
-						<li class="fragment">frameworks MVC populares como Ruby on Rails son thread-based.</li>
-						<li class="fragment">comparten estado/datos mutables</li>
-						<li class="fragment">un thread por request</li>
-						<li class="fragment">acceso concurrente a datos mutables (variables y objetos) mutuo excluidos con locks y otros complicados mecanismos de sincronización</li>
-						<li class="fragment">thread safety: dificil de testear y asegurar</li>
-					</ul>
+					<h2>Location Transparency</h2>
+					<h1 style= "color: orange">Scale OUT = Scale UP</h1>
+					<aside class="notes">
+						- la transparencia de localización permite el desacoplamiento a nivel del espacio
+						- dos componentes se pueden comunicar si conocer donde estan ubicados.
+						- permite adaptar la topologia del sistema dependiendo del uso 
+						- es un concepto clave para poder escalar bajo demanda
+						- como estamos haciendo computación distribuida, no hay diferencia conceptual entre comunicarse con un componente en el mismo nodo o en otro nodo del cluster
+					</aside>
 				</section>
 
 				<section>
-					<h3>Ley de Amdahl</h3>
-					<img src="assets/amdahl.png">
+					<h1>la <span style="color: orange">Elasticidad</span></h1>
+					<h1>requiere de una </h1>
+					<h1 style="color: orange">Message-driven Arquitecture</h1>
 				</section>
 
-				<section>
-					<h2>Scalability</h2>
-					<h3>Modelos de Concurrencia</h3>
-					<h3>Message-driven Concurrency</h3>
-					<ul>
-						<li class="fragment">sistemas orientados a eventos basados en pasaje de mensajes asincrónicos permiten:</li>
-						<p class="fragment">- bajo acoplamiento e independencia de localización <strong>(location transparency)</strong> entre componentes</p>
-						<p class="fragment">- <strong>scale out</strong> del sistema hacia otros nodos, agregando instancias para incrementar el procesamiento de los eventos</p>
-						<p class="fragment">- <strong>scale up</strong> del sistema hacia otros cores, agregando instancias para incrementar el procesamiento de los eventos</p>
-						<p class="fragment">- <strong>scale up & scale out</strong>: no tienen diferencias a nivel de código! la topología del sistema se configura aparte</p>
-					</ul>
-				</section>
 
-				<!-- Event Driven -->
-				<section data-background="#C55300" data-background-transition="zoom">
-					<h2>Event Driven</h2>
-					<blockquote style="color: white;">
-						&ldquo;The flow of the program is determined by events.&rdquo;
-					</blockquote>
-					<p style="color: white;">Wikipedia</p>
-				</section>
-
-				<section>
-					<h2>Event Driven</h2>
-					<h3>Por qué es importante?</h3>
-					<p class="fragment">la comunicación asincrónica basada en pasaje de mensajes otorga:</p>
-					<ul>
-						<li class="fragment"><strong>bajo acoplamiento entre componentes</strong></li>
-						<li class="fragment"><strong>mantenibilidad y flexibilidad para evolucionar</strong> - interfaces enfocadas en el contenido de la comunicación</li>
-						<li class="fragment"><strong>lower latency & higher throughput</strong> - componentes receptores de eventos permanecen 'idle' mientras no reciban eventos, permitiendo a los demas receptores utilizar el mismo thread</li>
-						<li class="fragment"><strong>scale up & out</strong> - dinamicamente agregar/quitar componentes receptores de eventos en la misma maquina o en nuevos nodos</li>
-					</ul>
+				<!-- Message Driven -->
+				
+				<section data-background="#59CDEA">
+					<h2 style="color: white;">Reactive Systems</h2>
+					<h3 style="color: white;">Traits</h3>
+					<img style="border: none; box-shadow: none;" src="assets/reactive-traits.png" />
+					<strong><a style="color: white;" href="http://reactivemanifesto.org/">reactivemanifesto.org</a></strong>
 				</section>
 
 				<section data-background="#C55300" data-background-transition="zoom">
-					<h1>Conclusión</h1>
+					<h1>Message Driven Arquitecture</h1>
+				</section>
+
+				<section>
+					<h2>Message Driven</h2>
+					<h3 style="color: orange;">Por qué es importante?</h3>
+					<p class="fragment">la comunicación asincrónica basada en pasaje de mensajes otorga/permite:</p>
 					<ul>
-						<li class="fragment" style="color: white;">vimos a grandes rasgos lo que implica desarrollar aplicaciones con los requerimientos del "hoy"</li>
-						<li class="fragment" style="color: white;">vimos que la Programación Reactiva no es solo una tecnología más, sino que es ÉL paradigma para desarrollar dichas aplicaciones</li>
-						<li class="fragment" style="color: white;">independientemente del languaje o framework a utilizar, la escalibilidad y la resilencia deben ser prioritarios con el fin de alzanzar la "responsiveness" que esperan los usuarios</li>
-						<li class="fragment" style="color: white;">arquitecturas basadas en eventos no bloqueantes y asincrónicos proveen la base para alcanzar la escabilidad y resiliencia necesaria</li>
+						<li class="fragment"><strong style="color: pink;">bajo acoplamiento</strong></li>
+						<li class="fragment"><strong style="color: pink;">aislamiento</strong></li>
+						<li class="fragment"><strong style="color: pink;">location transparency</strong></li>
+						<li class="fragment"><strong style="color: pink;">mantenibilidad y flexibilidad para evolucionar</strong> - interfaces enfocadas en el contenido de la comunicación</li>
+						<li class="fragment"><strong style="color: pink;">lower latency & higher throughput</strong></li>
+						<li class="fragment"><strong style="color: pink;">scale up & out</strong></li>
+						<li class="fragment"><strong style="color: pink;">load management and flow control</strong> - a través del monitoreo de colas de mensaje y aplicando back-pressure</li>
 					</ul>
+					<aside class="notes"></aside>
+				</section>
+
+				<!-- End -->
+				<section data-background="#59CDEA">
+					<h2 style="color: white;">Reactive Systems</h2>
+					<h3 style="color: white;">Traits</h3>
+					<img style="border: none; box-shadow: none;" src="assets/reactive-traits.png" />
+					<strong><a style="color: white;" href="http://reactivemanifesto.org/">reactivemanifesto.org</a></strong>
+				</section>
+
+				<section>
+					<h2>Qué posibles tecnologías cumplen con todos estos requerimientos?</h2>
+					<table class="fragment">
+						<thead>
+							<tr>
+								<th><span style="color: pink;">Feature</span></th>
+								<th><span style="color: pink;">Akka</span></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>containment (bulkheads)</td>
+								<td>yes (actors)</td>
+							</tr>
+							<tr>
+								<td>asynchronous & non blocking message-passing</td>
+								<td>yes</td>
+							</tr>
+							<tr>
+								<td>fault tolerance</td>
+								<td>yes (supervision)</td>
+							</tr>
+							<tr>
+								<td>back-pressure</td>
+								<td>yes (by using Akka Streams)</td>
+							</tr>
+							<tr>
+								<td>circuit breaker</td>
+								<td>yes</td>
+							</tr>
+							<tr>
+								<td>location transparency</td>
+								<td>yes (ActorRef concept)</td>
+							</tr>
+						</tbody>
+					</table>   
 				</section>
 
 				<section>
 					<h1>Referencias</h1>
 						<p><a href="http://reactivemanifesto.org/">reactivemanifesto.org</a></p>
-						<p><a href="https://typesafe.com">typesafe.com</a></p>
+						<p><a href="http://www.manning.com/kuhn/">Reactive Design Patterns - Roland Kuhn and Jamie Allen</a></p>
 						<p><a href="https://medium.com/reactive-programming/what-is-reactive-programming-bc9fa7f4a7fc">Kevin Webber - What is Reactive Programming?</a></p>
 						<p><a href="http://www.slideshare.net/jboner/going-reactive-eventdriven-scalable-resilient-systems">Jonas Boner - Go Reactive: Event-Driven, Scalable, Resilient & Responsive Systems</a></p>
 						<p><a href="http://internetlivestats.com/">internetlivestats.com</a></p>
 						<p><a href="http://www.slideshare.net/ktoso/reactive-stream-processing-with-akka-streams">Reactive Stream Processing with Akka Streams</a></p>
+						<p><a href="http://reactivestreams.org/">reactivestreams.org</a></p>
+				</section>
+
+				<section data-background="#000000">
+					<img style="border: none; box-shadow: none; width: 100%" src="assets/thats-all.gif">
 				</section>
 			</div>
 
