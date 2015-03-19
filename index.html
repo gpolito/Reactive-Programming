@@ -66,6 +66,45 @@
 
 				<section>
 					<h2>Why Reactive?</h2>
+					<h3 style="color: orange;">Quick summary. In 10 years:</h3>
+					<table>
+						<thead>
+							<tr>
+								<th></th>
+								<th><strong>2005</strong></th>
+								<th><strong>2015</strong></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><strong>Internet users</strong></td>
+								<td><span style="color: pink;">1000 millions</span></td>
+								<td>3000 millions</td>
+							</tr>
+							<tr>
+								<td><strong>YouTube</strong></td>
+								<td>was born on February, 2005</td>
+								<td><span style="color: pink;">more than 1000 million users</span></td>
+							</tr>
+							<tr>
+								<td><strong>Facebook</strong></td>
+								<td>5.5 million active users</td>
+								<td><span style="color: pink;">1.380 million active users</span></td>
+							</tr>
+							<tr>
+								<td><strong>Twitter</strong></td>
+								<td>wasn't born yet</td>
+								<td>288 million active users</td>
+							</tr>
+						</tbody>
+					</table>
+					<aside class="notes">
+						- primer columna primero, luego la segunda
+					</aside>
+				</section>
+
+				<section>
+					<h2>Why Reactive?</h2>
 					<h3 style="color: orange;"> Some things have changed during this years...</h3>
 					<table>
 						<thead>
@@ -118,44 +157,7 @@
 					</aside>
 				</section>
 
-				<section>
-					<h2>Why Reactive?</h2>
-					<h3 style="color: orange;">Quick summary. In 10 years:</h3>
-					<table>
-						<thead>
-							<tr>
-								<th></th>
-								<th><strong>2005</strong></th>
-								<th><strong>2015</strong></th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td><strong>Internet users</strong></td>
-								<td><span style="color: pink;">1000 millions</span></td>
-								<td>3000 millions</td>
-							</tr>
-							<tr>
-								<td><strong>YouTube</strong></td>
-								<td>was born on February, 2005</td>
-								<td><span style="color: pink;">more than 1000 million users</span></td>
-							</tr>
-							<tr>
-								<td><strong>Facebook</strong></td>
-								<td>5.5 million active users</td>
-								<td><span style="color: pink;">1.380 million active users</span></td>
-							</tr>
-							<tr>
-								<td><strong>Twitter</strong></td>
-								<td>wasn't born yet</td>
-								<td>288 million active users</td>
-							</tr>
-						</tbody>
-					</table>
-					<aside class="notes">
-						- primer columna primero, luego la segunda
-					</aside>
-				</section>
+				
 
 				<section>
 					<h2>Why Reactive?</h2>
@@ -192,7 +194,7 @@
 				<section>
 					<h2>Responsive Systems</h2>
 						<div class="fragment">
-							<p style="color: orange">offer:</p>
+							<h3 style="color: orange">offer:</h3>
 							<ul>
 								<li >rapid and consistent response times</li>
 								<li>reliable upper bounds to deliver a consistent QoS</li>
@@ -200,7 +202,7 @@
 							<br><br>
 						</div>
 						<div class="fragment">
-							<p style="color: orange">should:</p>
+							<h3 style="color: orange">should:</h3>
 							<ul>
 								<li class="fragment">detect problems quickly and dealt with them effectively</li>
 							</ul>
@@ -254,10 +256,10 @@
 					<h2>Resilient - how? </h2>
 					<h2 style="color: orange;">Failure Recovery in OOP </h2>
 					<ul>
-						<li class="fragment">single thread of control</li>
-						<li class="fragment">if the thread blows up => you are screwed</li>
-						<li class="fragment">no global organization of error handling </li> 
-						<li class="fragment">defensive programming tangled with business logic, <br> scattered around the code</li>
+						<li>single thread of control</li>
+						<li>if the thread blows up => you are screwed</li>
+						<li>no global organization of error handling </li> 
+						<li>defensive programming tangled with business logic, <br> scattered around the code</li>
 					</ul>
 				</section>
 
@@ -272,7 +274,6 @@
 						<li>containment</li> <br>
 						<li>delegation</li><br>
 						<li>isolation</li><br>
-						<li>replication</li><br>
 					</ol>
 					<br/>
 					<br/>
@@ -325,6 +326,8 @@
 
 				<section data-background="assets/ship.png" data-background-repeat="repeat" data-background-size="1200px">
 					<h1 style="color : black;">Bulkheads</h1>
+					<h1 style="color : black;">+</h1>
+					<h1 style="color : black;">Supervison</h1>
 					<aside class="notes">una vez q sabemos las propiedades q tenemos q tener en el diseño para lograr la resiliencia, vamos a revisar cada una de éstas.</aside>
 				</section>
 
@@ -339,6 +342,10 @@
 					<br>
 					<br>
 					<p class="fragment">this concept should be used together with <span style="color: orange;">supervison!</span></p>
+				</section>
+
+				<section data-background="assets/burns.jpg">
+					<h1 style="color: white;">Supervison</h1>
 				</section>
 
 				<section data-background="#FFFFFF">
@@ -378,6 +385,10 @@ override val supervisorStrategy =
 					</code></pre>
 				</section>
 
+				<section data-background="assets/electricity.jpg">
+					<h1 style="color: black;">Circuit Breaker</h1>
+				</section>
+					
 				<section>
 					<h2>Circuit Breaker</h2>
 					<h3 style="color: orange;">PROBLEM - Example Situation</h3>
@@ -486,29 +497,29 @@ def dangerous: Future[String] =
 					</code></pre>
 				</section>
 
-				<section>
-					<h2>Back Pressure</h2>
-					<ul>
-						<li class="fragment" style="color: orange;">Problem Description</li>
-						<ul>
-							<li class="fragment" style="color: pink"><strong>speed(publisher) > speed(suscriber)</strong></li>
-							<li class="fragment">when a component is under <em>stress</em> it might <em>fail catastrophically</em> or <em>drop messages</em> in an uncontrolled fashion</li>
-							
-							<li class="fragment"><em>to be more resilient, the system as a whole</em> needs to <em>react</em> to avoid this kind of situations</li>
-
-						</ul>
-						<li class="fragment" style="color: orange;">Solution</li>
-						<ul>
-							<li class="fragment" style="color: pink"><strong>speed(publisher) < speed(suscriber)</strong></li>
-							<li class="fragment"><strong style="color: #009B77"><em>Back pressure: </em></strong><br>
-								the component should communicate that is under stress to upstream components, so they can start reducing the load</li>
-						</ul>
-					</ul>
+				<section data-background="assets/water_pumping.jpg">
+					<h1 style="color: black;">Back Pressure</h1>
 				</section>
 
 				<section data-background="#FFFFFF">
-					<h2 style="color: orange;">Back Pressure</h2>
+					<h2 style="color: orange;">Problem Description</h2>
+					<p class="fragment" style="color: #009B77"><strong>speed(publisher) > speed(suscriber)</strong></p>
+					<img class="fragment" style="border: none; box-shadow: none;" src="assets/back-pressure-0.png" >
+						
+					<aside class="notes">
+						when a component is under stress it might fail catastrophically or drop messages in an uncontrolled fashion. To be more resilient, the system as a whole needs to react to avoid this kind of situations
+					</aside>
+					<p class="fragment" style="color: #009B77">bounded buffer => drop messages + require re-sending</strong></p>
+					<p class="fragment" style="color: #009B77">unbounded buffer => buffer overflow </strong></p>
+				</section>
+
+				<section data-background="#FFFFFF">
+					<h2 style="color: orange;">Back Pressure - Solution</h2>
+					<p><strong>speed(publisher) < speed(suscriber)</strong></p>
 					<img style="border: none; box-shadow: none;" src="assets/back-pressure.png">
+					
+					<aside class="notes">Back pressure:  the component should communicate that is under stress to upstream components, so they can start reducing the load
+					</aside>
 				</section>
 
 				<section data-background="#FFFFFF">
@@ -565,7 +576,7 @@ Flow(text.split("" "").toVector).
 				</section>
 
 				<section data-background="#C55300" data-background-transition="zoom">
-					<h2 style="color: burlywood">Elasticity</h2>
+					<h2 style="color: black">Elasticity</h2>
 					<div class="fragment">
 					<h1>Scalability</h1>
 					<h1>+</h1>
@@ -573,14 +584,14 @@ Flow(text.split("" "").toVector).
 					</div>
 				</section>
 
-				<section data-background="#C55300" data-background-transition="zoom">
-					<p style="font-size: 150%; color: white; text-transform: none;">slidesLanguageService().setLang(Lang.SPANISH)</p>
+				<section data-background="#FFFFFF" data-background-transition="zoom">
+					<p style="font-size: 150%; color: black; text-transform: none;">slidesLanguageService().<span style="color: brown">setLang</span>(<span style="color: cornflowerblue">Lang.SPANGLISH</span>)</p>
 				</section>
 
 				<section>
 					<h2>Scalability - Qué significa? - (1)</h3>
 					<div class="fragment" style= "color: orange; font-size: 200%">
-						<p>performance del sistema</p>
+						<p>la performance del sistema</p>
 						<p>es proporcional</p> 
 						<p>a los recursos reservados</p> 
 					</div>
@@ -685,8 +696,8 @@ Flow(text.split("" "").toVector).
 					<table class="fragment">
 						<thead>
 							<tr>
-								<th><span style="color: pink;">Feature</span></th>
-								<th><span style="color: pink;">Akka</span></th>
+								<th><span style="color: orange;">Feature</span></th>
+								<th><span style="color: orange;">Akka</span></th>
 							</tr>
 						</thead>
 						<tbody>
