@@ -10,4 +10,4 @@ $ git clone https://github.com/gpolito/Reactive-Programming.git
 $ wget https://github.com/gpolito/Reactive-Programming/archive/master.zip
 ```
 ####How to open the slides
-To view the presentation just open in you favorite web browser the **index.html** file that is the root folder. 
+To view the presentation just open in you favorite web browser the **index.html** file that is in the root folder. 
