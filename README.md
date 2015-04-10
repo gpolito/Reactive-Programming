@@ -1,5 +1,9 @@
 ##Reactive Systems - Overview
 
+####Presented at:
+- Scala Meetup - Montevideo, Uruguay - 2015/09/13
+- Pyxis Open Tech - Montevideo, Uruguay - 2014/09/13
+
 ####How to download the slides
 #####Option 1 - clone the repo
 ```
